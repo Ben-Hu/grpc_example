@@ -1,0 +1,9 @@
+FROM python:3.7.5
+
+WORKDIR /opt/app/
+
+ADD ./python_client/ /opt/app/
+
+RUN pip install poetry && poetry install
+
+CMD poetry run python client.py world

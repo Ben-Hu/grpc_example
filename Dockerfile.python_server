@@ -1,0 +1,11 @@
+FROM python:3.7.5
+
+WORKDIR /opt/app/
+
+ADD ./python_server/ /opt/app/
+
+RUN pip install poetry && poetry install
+
+EXPOSE 50051
+
+CMD poetry run python hello/server.py

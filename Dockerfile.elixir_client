@@ -1,0 +1,9 @@
+FROM elixir:1.10.4
+
+WORKDIR /opt/app/
+
+ADD ./elixir_client/ /opt/app/
+
+RUN mix local.hex --force && mix deps.get && mix compile
+
+CMD mix request world

@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  python_server:
+    build:
+      context: .
+      dockerfile: Dockerfile.python_server
+    ports:
+      - 50051:50051
+  python_client:
+    build:
+      context: .
+      dockerfile: Dockerfile.python_client
+    environment:
+      - GREETER_SERVICE=python_server:50051
+    depends_on:
+      - python_server
+  elixir_client:
+    build:
+      context: .
+      dockerfile: Dockerfile.elixir_client
+    environment:
+      - GREETER_SERVICE=python_server:50051
+    depends_on:
+      - python_server
